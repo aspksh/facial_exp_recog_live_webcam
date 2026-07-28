@@ -9,7 +9,7 @@ from torchvision import transforms
 from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
-
+st.write("Cascade Loaded:", not face_cascade.empty())
 from model import EmotionCNN
 
 
@@ -68,7 +68,7 @@ class EmotionProcessor(VideoProcessorBase):
             minNeighbors=5,
             minSize=(80,80)
         )
-
+        print("Faces detected:", len(faces))
         for (x,y,w,h) in faces:
 
             # thoda margin add karte hain
