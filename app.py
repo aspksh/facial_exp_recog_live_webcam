@@ -53,8 +53,6 @@ transform = transforms.Compose([
 
 # ---------------- Face Detector ----------------
 
-mp_face = mp.solutions.face_detection
-
 
 class EmotionProcessor(VideoProcessorBase):
 
