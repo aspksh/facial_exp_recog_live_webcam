@@ -68,6 +68,8 @@ class EmotionProcessor(VideoProcessorBase):
             minNeighbors=5,
             minSize=(80,80)
         )
+
+        cv2.rectangle(img, (20,20), (220,220), (0,255,0), 3)
         print("Faces detected:", len(faces))
         for (x,y,w,h) in faces:
 
