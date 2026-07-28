@@ -8,17 +8,11 @@ from PIL import Image
 from torchvision import transforms
 from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
 
-face_cascade = cv2.CascadeClassifier(
-    cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
-)
+# face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 
 from model import EmotionCNN
 
 
-st.write(cv2)
-st.write(cv2.__file__)
-st.write(cv2.__version__)
-st.write(hasattr(cv2, "CascadeClassifier"))
 
 # ---------------- Device ----------------
 
@@ -131,6 +125,10 @@ class EmotionProcessor(VideoProcessorBase):
         return av.VideoFrame.from_ndarray(img, format="bgr24")
 
 import streamlit as st
+st.write(cv2)
+st.write(cv2.__file__)
+st.write(cv2.__version__)
+st.write(hasattr(cv2, "CascadeClassifier"))
 
 
 st.set_page_config(
