@@ -123,9 +123,10 @@ class EmotionProcessor(VideoProcessorBase):
         return av.VideoFrame.from_ndarray(img, format="bgr24")
 
 import streamlit as st
+import sys
 
-st.write("File:", cv2.__file__)
-st.write("Version:", cv2.__version__)
+st.write("Python:", sys.version)
+st.write("OpenCV:", cv2.__version__)
 st.write("Has CascadeClassifier:", hasattr(cv2, "CascadeClassifier"))
 
 if hasattr(cv2, "CascadeClassifier"):
