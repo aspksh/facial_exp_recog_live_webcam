@@ -2,8 +2,7 @@ import av
 import cv2
 import torch
 import numpy as np
-import st
-
+import streamlit as st
 
 from PIL import Image
 from torchvision import transforms
