@@ -123,10 +123,15 @@ class EmotionProcessor(VideoProcessorBase):
         return av.VideoFrame.from_ndarray(img, format="bgr24")
 
 import streamlit as st
-st.write(cv2)
-st.write(cv2.__file__)
-st.write(cv2.__version__)
-st.write(hasattr(cv2, "CascadeClassifier"))
+
+st.write("File:", cv2.__file__)
+st.write("Version:", cv2.__version__)
+st.write("Has CascadeClassifier:", hasattr(cv2, "CascadeClassifier"))
+
+if hasattr(cv2, "CascadeClassifier"):
+    st.write("CascadeClassifier exists")
+else:
+    st.write("CascadeClassifier NOT found")
 
 
 st.set_page_config(
