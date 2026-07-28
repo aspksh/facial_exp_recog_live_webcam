@@ -56,71 +56,20 @@ transform = transforms.Compose([
 
 class EmotionProcessor(VideoProcessorBase):
 
-    def recv(self, frame):
+   def recv(self, frame):
 
         img = frame.to_ndarray(format="bgr24")
 
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-        faces = face_cascade.detectMultiScale(
-            gray,
-            scaleFactor=1.2,
-            minNeighbors=5,
-            minSize=(80,80)
+        # Test text
+        cv2.putText(
+            img,
+            "HELLO",
+            (50, 50),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            1,
+            (0, 255, 0),
+            2
         )
-
-        cv2.rectangle(img, (20,20), (220,220), (0,255,0), 3)
-        print("Faces detected:", len(faces))
-        for (x,y,w,h) in faces:
-
-            # thoda margin add karte hain
-            pad = 15
-
-            x1 = max(0, x-pad)
-            y1 = max(0, y-pad)
-
-            x2 = min(img.shape[1], x+w+pad)
-            y2 = min(img.shape[0], y+h+pad)
-
-            face = img[y1:y2, x1:x2]
-
-            if face.size == 0:
-                continue
-
-            face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
-
-            face = Image.fromarray(face)
-
-            tensor = transform(face).unsqueeze(0).to(device)
-
-            with torch.no_grad():
-
-                output = model(tensor)
-
-                probs = torch.softmax(output, dim=1)
-
-                confidence, pred = torch.max(probs, dim=1)
-
-            emotion = EMOTIONS[pred.item()]
-            confidence = confidence.item()*100
-
-            cv2.rectangle(
-                img,
-                (x1,y1),
-                (x2,y2),
-                (0,255,0),
-                2
-            )
-
-            cv2.putText(
-                img,
-                f"{emotion} {confidence:.1f}%",
-                (x1, y1-10),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                0.7,
-                (0,255,0),
-                2
-            )
 
         return av.VideoFrame.from_ndarray(img, format="bgr24")
 
