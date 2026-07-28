@@ -14,6 +14,12 @@ face_cascade = cv2.CascadeClassifier(
 
 from model import EmotionCNN
 
+
+st.write(cv2)
+st.write(cv2.__file__)
+st.write(cv2.__version__)
+st.write(hasattr(cv2, "CascadeClassifier"))
+
 # ---------------- Device ----------------
 
 device = torch.device(
